@@ -1,4 +1,10 @@
 package com.example.dailityhabits.repository;
 
-public interface HabitRepository {
+import com.example.dailityhabits.entity.Habit;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface HabitRepository extends JpaRepository<Habit, Long> {
+
+
+
 }
