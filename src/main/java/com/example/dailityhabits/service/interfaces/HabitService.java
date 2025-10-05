@@ -23,4 +23,6 @@ public interface HabitService{
 
     void calculateProgress();
 
+    void deleteHabit(Long id);
+
 }
