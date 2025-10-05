@@ -27,8 +27,6 @@ public class Habit {
     private String category;
 
     private LocalDateTime startDate;
-    private boolean active;
-
     @OneToOne(mappedBy = "habit")
     private Frequency frequency;
 

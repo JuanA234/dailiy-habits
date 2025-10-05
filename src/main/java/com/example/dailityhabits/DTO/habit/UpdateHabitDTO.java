@@ -5,11 +5,9 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
-public record ResponseHabitDTO(
-        Long id,
+public record UpdateHabitDTO(
         String name,
         String description,
         String category,
-        LocalDateTime startDate
-) {
+        LocalDateTime startDate) {
 }

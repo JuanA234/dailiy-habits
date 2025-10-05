@@ -6,7 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Data
@@ -18,7 +19,8 @@ public class RegisterCompleted {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private LocalDateTime date;
+    private LocalDate date;
+    private LocalTime time;
     private String notas;
 
     @ManyToOne(fetch = FetchType.LAZY)
