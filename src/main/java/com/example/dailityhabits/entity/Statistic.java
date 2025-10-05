@@ -1,10 +1,6 @@
 package com.example.dailityhabits.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jdk.jfr.Timestamp;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,14 +18,18 @@ public class Statistic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int currentStreak;
+    private Integer currentStreak;
 
-    private int maxStreak;
+    private Integer maxStreak;
 
-    private float percentageCompleted;
+    private Float percentageCompleted;
 
-    private int totalCompleted;
+    private Integer totalCompleted;
 
     private LocalDateTime startTime;
+
+    @OneToOne
+    @JoinColumn(name = "habit_id", referencedColumnName = "id")
+    private Habit habit;
 
 }

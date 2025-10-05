@@ -33,5 +33,7 @@ public class Habit {
     @OneToMany(mappedBy = "habit")
     private Set<RegisterCompleted> registerCompleted;
 
+    @OneToOne(mappedBy = "habit")
+    private Statistic statistic;
 
 }

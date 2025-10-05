@@ -1,5 +1,6 @@
 package com.example.dailityhabits.controller;
 
+import com.example.dailityhabits.dto.Statistic.StatisticReportDTO;
 import com.example.dailityhabits.dto.Statistic.StatisticRequestDTO;
 import com.example.dailityhabits.dto.Statistic.StatisticResponseDTO;
 import com.example.dailityhabits.service.interfaces.StatisticService;
@@ -45,5 +46,10 @@ public class StatisticController {
     public ResponseEntity<Void> calculatePercentage(@PathVariable Long id){
         statisticService.calculatePercentage(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/report")
+    public ResponseEntity<StatisticReportDTO> generateReport(@PathVariable Long id){
+        return ResponseEntity.ok(statisticService.generateReport(id));
     }
 }
