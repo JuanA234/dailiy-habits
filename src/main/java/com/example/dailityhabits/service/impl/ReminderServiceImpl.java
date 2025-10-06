@@ -1,6 +1,7 @@
 package com.example.dailityhabits.service.impl;
 
 import com.example.dailityhabits.DTO.reminder.ReminderDTO;
+import com.example.dailityhabits.exception.notFound.ReminderNotfoundException;
 import com.example.dailityhabits.mapper.ReminderMapper;
 import com.example.dailityhabits.repository.HabitRepository;
 import com.example.dailityhabits.repository.ReminderRepository;
@@ -20,11 +21,11 @@ public class ReminderServiceImpl implements ReminderService {
     @Override
     public ReminderDTO getReminderById(Long id) {
         if (id == null || id <= 0) {
-            throw new IllegalArgumentException("Invalid ID");
+            throw new ReminderNotfoundException("Invalid ID");
         }
         return reminderRepository.findById(id)
                 .map(reminderMapper::toReminderDTO)
-                .orElseThrow(() -> new NoSuchElementException("Reminder not found"));
+                .orElseThrow(() -> new ReminderNotfoundException("Reminder not found"));
     }
 
     @Override
@@ -36,7 +37,7 @@ public class ReminderServiceImpl implements ReminderService {
     @Override
     public ReminderDTO updateReminder(ReminderDTO reminderDTO) {
         if (reminderDTO.id() == null || reminderDTO.id() <= 0) {
-            throw new IllegalArgumentException("Invalid ID");
+            throw new ReminderNotfoundException("Invalid ID");
         }
         return reminderMapper.toReminderDTO(
                 reminderRepository.save(reminderMapper.fromReminderDTO(reminderDTO)));
@@ -45,7 +46,7 @@ public class ReminderServiceImpl implements ReminderService {
     @Override
     public void deleteReminderById(Long id) {
         if (id == null || id <= 0) {
-            throw new IllegalArgumentException("Invalid ID");
+            throw new ReminderNotfoundException("Invalid ID");
         }
         reminderRepository.deleteById(id);
     }
