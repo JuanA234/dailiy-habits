@@ -6,24 +6,30 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "registersCompleted")
-public class RegisterCompleted {
+@Builder
+public class Statistic {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate date;
-    private LocalTime time;
-    private String notas;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    private Integer currentStreak;
+
+    private Integer maxStreak;
+
+    private Float percentageCompleted;
+
+    private Integer totalCompleted;
+
+    private LocalDateTime startTime;
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "habit_id", referencedColumnName = "id")
     private Habit habit;
+
 }
