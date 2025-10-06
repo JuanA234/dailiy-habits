@@ -1,14 +1,16 @@
 package com.example.dailityhabits.service.impl;
 
-import com.example.dailityhabits.dto.Statistic.StatisticReportDTO;
-import com.example.dailityhabits.dto.Statistic.StatisticRequestDTO;
-import com.example.dailityhabits.dto.Statistic.StatisticResponseDTO;
+import com.example.dailityhabits.dto.statistic.StatisticReportDTO;
+import com.example.dailityhabits.dto.statistic.StatisticRequestDTO;
+import com.example.dailityhabits.dto.statistic.StatisticResponseDTO;
 import com.example.dailityhabits.entity.Frequency;
 import com.example.dailityhabits.entity.Habit;
 import com.example.dailityhabits.entity.RegisterCompleted;
 import com.example.dailityhabits.entity.Statistic;
+import com.example.dailityhabits.exception.notFound.HabitNotFoundException;
 import com.example.dailityhabits.exception.notFound.StatisticNotFoundException;
 import com.example.dailityhabits.mapper.StatisticMapper;
+import com.example.dailityhabits.repository.HabitRepository;
 import com.example.dailityhabits.repository.RegisterCompletedRepository;
 import com.example.dailityhabits.repository.StatisticRepository;
 import com.example.dailityhabits.service.interfaces.StatisticService;
@@ -29,6 +31,7 @@ public class StatisticServiceImpl implements StatisticService {
     private final StatisticRepository statisticRepository;
     private final StatisticMapper statisticMapper;
     private final RegisterCompletedRepository registerCompletedRepository;
+    private final HabitRepository habitRepository;
 
 
     @Override
@@ -37,13 +40,16 @@ public class StatisticServiceImpl implements StatisticService {
     }
 
     @Override
-    public StatisticResponseDTO createStatistic() {
+    public StatisticResponseDTO createStatistic(Long habitId) {
+        Habit habit = habitRepository.findById(habitId).orElseThrow(()->new HabitNotFoundException("Habit not found with id: " + habitId));
+
         Statistic statistic = Statistic.builder()
                 .currentStreak(0)
                 .maxStreak(0)
                 .percentageCompleted(0.0f)
                 .totalCompleted(0)
                 .startTime(LocalDateTime.now())
+                .habit(habit)
                 .build();
         return statisticMapper.toDTO(statisticRepository.save(statistic));
     }
