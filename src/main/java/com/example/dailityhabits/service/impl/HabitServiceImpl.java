@@ -4,14 +4,22 @@ import com.example.dailityhabits.DTO.habit.CreateHabitDTO;
 import com.example.dailityhabits.DTO.habit.ResponseHabitDTO;
 import com.example.dailityhabits.DTO.habit.UpdateHabitDTO;
 import com.example.dailityhabits.DTO.registerCompleted.ResponseRegisterCompletedDTO;
+import com.example.dailityhabits.entity.Frequency;
 import com.example.dailityhabits.entity.Habit;
+import com.example.dailityhabits.entity.Reminder;
+import com.example.dailityhabits.exception.notFound.FrecuencyNotFoundException;
 import com.example.dailityhabits.exception.notFound.HabitNotFoundException;
+import com.example.dailityhabits.exception.notFound.ReminderNotFoundException;
 import com.example.dailityhabits.mapper.HabitMapper;
+import com.example.dailityhabits.repository.FrequencyRepository;
 import com.example.dailityhabits.repository.HabitRepository;
+import com.example.dailityhabits.repository.ReminderRepository;
 import com.example.dailityhabits.service.interfaces.HabitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +29,8 @@ public class HabitServiceImpl implements HabitService {
 
     private final HabitRepository habitRepository;
     private final HabitMapper habitMapper;
+    private final FrequencyRepository  frequencyRepository;
+    private final ReminderRepository reminderRepository;
 
 
     @Override
@@ -38,9 +48,13 @@ public class HabitServiceImpl implements HabitService {
     @Override
     public ResponseHabitDTO createHabit(CreateHabitDTO request) {
 
+        Frequency frequency = frequencyRepository.findById(request.frecuencyId())
+                .orElseThrow(()->new FrecuencyNotFoundException("Frecuency not found"));
 
+        Habit habit = habitMapper.toEntity(request);
+        habit.setFrequency(frequency);
 
-        return null;
+        return habitMapper.toDTO(habitRepository.save(habit));
     }
 
     @Override
@@ -62,11 +76,18 @@ public class HabitServiceImpl implements HabitService {
 
     @Override
     public ResponseHabitDTO UpdateHabit(Long id, UpdateHabitDTO request) {
-        return null;
+
+        Habit foundHabit = habitRepository.findById(id)
+                .orElseThrow(() -> new HabitNotFoundException("Habit not found"));
+
+        habitMapper.UpdateHabitFromDTO(request, foundHabit);
+
+        return habitMapper.toDTO(habitRepository.save(foundHabit));
     }
 
     @Override
     public ResponseRegisterCompletedDTO check(String notas) {
+
         return null;
     }
 }

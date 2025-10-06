@@ -33,5 +33,8 @@ public class Habit {
     @OneToMany(mappedBy = "habit")
     private Set<RegisterCompleted> registerCompleted;
 
+    @OneToMany(mappedBy = "habit")
+    private Set<Reminder> reminders;
+
 
 }

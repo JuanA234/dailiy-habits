@@ -26,6 +26,10 @@ public class Frequency {
     @Enumerated(EnumType.STRING)
     private FrequencyType type;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "habit_id", referencedColumnName = "id")
+    private Habit habit;
+
     /*
     How many times per Frequency type e.g, every two days
     FrequencyType = Daily

@@ -10,7 +10,8 @@ public record CreateHabitDTO(
         String description,
         String category,
         @NotNull LocalDateTime startDate,
-        @NotNull Long frecuencyId
+        @NotNull Long frecuencyId,
+        @NotNull Long reminderId
 
         ) {
 }
