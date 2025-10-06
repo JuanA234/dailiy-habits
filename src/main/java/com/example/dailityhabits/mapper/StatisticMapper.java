@@ -12,5 +12,8 @@ public interface StatisticMapper {
     @Mapping(target = "habitId", source = "habit.id")
     StatisticResponseDTO toDTO(Statistic statistic);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "startTime", ignore = true)
+    @Mapping(target = "habit", ignore = true)
     Statistic toStatistic(StatisticRequestDTO statisticRequestDTO);
 }

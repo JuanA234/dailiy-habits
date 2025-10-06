@@ -8,7 +8,6 @@ import java.time.LocalTime;
 public record UpdateRegisterCompletedDTO(
         LocalDateTime date,
         LocalTime time,
-        String notas,
-        Long habitId
+        String notas
 ) {
 }

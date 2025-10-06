@@ -13,6 +13,7 @@ public interface RegisterCompletedMapper {
     @Mapping(source = "habit", target = "habit")
     ResponseRegisterCompletedDTO toDTO(RegisterCompleted registerCompleted);
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(source = "habitId", target = "habit.id")
     RegisterCompleted toEntity(CreateRegisterCompletedDTO dto);
 

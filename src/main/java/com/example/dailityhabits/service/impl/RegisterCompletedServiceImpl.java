@@ -1,6 +1,5 @@
 package com.example.dailityhabits.service.impl;
 
-import com.example.dailityhabits.DTO.habit.UpdateHabitDTO;
 import com.example.dailityhabits.DTO.registerCompleted.ResponseRegisterCompletedDTO;
 import com.example.dailityhabits.DTO.registerCompleted.UpdateRegisterCompletedDTO;
 import com.example.dailityhabits.entity.RegisterCompleted;
@@ -15,7 +14,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class RegisterCompletedServideImpl implements RegisterCompletedService {
+public class RegisterCompletedServiceImpl implements RegisterCompletedService {
 
     private final RegisterCompletedMapper registerCompletedMapper;
     private final RegisterCompletedRepository registerCompletedRepository;
