@@ -1,8 +1,8 @@
 package com.example.dailityhabits.service.impl;
 
-import com.example.dailityhabits.dto.statistic.StatisticReportDTO;
-import com.example.dailityhabits.dto.statistic.StatisticRequestDTO;
-import com.example.dailityhabits.dto.statistic.StatisticResponseDTO;
+import com.example.dailityhabits.DTO.statistic.StatisticReportDTO;
+import com.example.dailityhabits.DTO.statistic.StatisticRequestDTO;
+import com.example.dailityhabits.DTO.statistic.StatisticResponseDTO;
 import com.example.dailityhabits.entity.Frequency;
 import com.example.dailityhabits.entity.Habit;
 import com.example.dailityhabits.entity.RegisterCompleted;

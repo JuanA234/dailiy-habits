@@ -1,4 +1,4 @@
-package com.example.dailityhabits.dto.statistic;
+package com.example.dailityhabits.DTO.statistic;
 
 import java.util.Date;
 
