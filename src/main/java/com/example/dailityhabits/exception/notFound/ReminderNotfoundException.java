@@ -1,7 +1,7 @@
 package com.example.dailityhabits.exception.notFound;
 
-public class ReminderNotfoundException extends ResourceNotFoundException {
-    public ReminderNotfoundException(String message) {
+public class ReminderNotFoundException extends ResourceNotFoundException {
+    public ReminderNotFoundException(String message) {
         super(message);
     }
 }
