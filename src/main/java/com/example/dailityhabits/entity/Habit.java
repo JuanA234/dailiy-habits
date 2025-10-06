@@ -30,6 +30,8 @@ public class Habit {
     @OneToOne(mappedBy = "habit")
     private Frequency frequency;
 
+
+
     @OneToMany(mappedBy = "habit")
     private Set<RegisterCompleted> registerCompleted;
 
