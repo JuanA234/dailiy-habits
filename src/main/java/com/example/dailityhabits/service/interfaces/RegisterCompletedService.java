@@ -4,9 +4,11 @@ import com.example.dailityhabits.DTO.habit.UpdateHabitDTO;
 import com.example.dailityhabits.DTO.registerCompleted.ResponseRegisterCompletedDTO;
 import com.example.dailityhabits.DTO.registerCompleted.UpdateRegisterCompletedDTO;
 
+import java.util.List;
+
 public interface RegisterCompletedService {
 
-    ResponseRegisterCompletedDTO listRegisterCompleted();
+    List<ResponseRegisterCompletedDTO> listRegisterCompleted();
 
     ResponseRegisterCompletedDTO findRegisterCompleted(Long id);
 
