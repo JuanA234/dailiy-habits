@@ -1,12 +1,11 @@
 package com.example.dailityhabits.controller;
 
-import com.example.dailityhabits.dto.Statistic.StatisticReportDTO;
-import com.example.dailityhabits.dto.Statistic.StatisticRequestDTO;
-import com.example.dailityhabits.dto.Statistic.StatisticResponseDTO;
+import com.example.dailityhabits.dto.statistic.StatisticReportDTO;
+import com.example.dailityhabits.dto.statistic.StatisticRequestDTO;
+import com.example.dailityhabits.dto.statistic.StatisticResponseDTO;
 import com.example.dailityhabits.service.interfaces.StatisticService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

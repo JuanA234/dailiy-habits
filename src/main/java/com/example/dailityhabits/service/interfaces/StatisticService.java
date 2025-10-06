@@ -1,8 +1,8 @@
 package com.example.dailityhabits.service.interfaces;
 
-import com.example.dailityhabits.dto.Statistic.StatisticReportDTO;
-import com.example.dailityhabits.dto.Statistic.StatisticRequestDTO;
-import com.example.dailityhabits.dto.Statistic.StatisticResponseDTO;
+import com.example.dailityhabits.dto.statistic.StatisticReportDTO;
+import com.example.dailityhabits.dto.statistic.StatisticRequestDTO;
+import com.example.dailityhabits.dto.statistic.StatisticResponseDTO;
 
 public interface StatisticService {
     StatisticResponseDTO getStatisticById(Long id);

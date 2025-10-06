@@ -1,4 +1,4 @@
-package com.example.dailityhabits.dto.Statistic;
+package com.example.dailityhabits.dto.statistic;
 
 public record StatisticRequestDTO(int currentStreak,
                                   int maxStreak,
