@@ -1,6 +1,7 @@
 package com.example.dailityhabits.service.impl;
 
 import com.example.dailityhabits.DTO.frequency.FrequencyDTO;
+import com.example.dailityhabits.exception.notFound.FrequencyNotFoundException;
 import com.example.dailityhabits.mapper.FrequencyMapper;
 import com.example.dailityhabits.repository.FrequencyRepository;
 import com.example.dailityhabits.service.interfaces.FrequencyService;
@@ -19,12 +20,12 @@ public class FrequencyServiceImpl implements FrequencyService {
     @Override
     public FrequencyDTO getFrequencybyId(Long id) {
         if (id == null || id <= 0) {
-            throw new IllegalArgumentException("Invalid ID");
+            throw new FrequencyNotFoundException("Invalid ID");
         }
 
         return frequencyRepository.findById(id)
                 .map(frequencyMapper::toFrequencyDTO)
-                .orElseThrow(() -> new NoSuchElementException("Frequency not found"));
+                .orElseThrow(() -> new FrequencyNotFoundException("Frequency not found"));
     }
 
     @Override
@@ -36,7 +37,7 @@ public class FrequencyServiceImpl implements FrequencyService {
     @Override
     public FrequencyDTO updateFrequency(FrequencyDTO frequencyDTO) {
         if (frequencyDTO.id() == null || frequencyDTO.id() <= 0) {
-            throw new IllegalArgumentException("Invalid ID");
+            throw new FrequencyNotFoundException("Invalid ID");
         }
         return frequencyMapper.toFrequencyDTO(
                 frequencyRepository.save(frequencyMapper.fromFrequencyDTO(frequencyDTO))
@@ -46,7 +47,7 @@ public class FrequencyServiceImpl implements FrequencyService {
     @Override
     public void deleteFrequencyById(Long id) {
         if (id == null || id <= 0) {
-            throw new IllegalArgumentException("Invalid ID");
+            throw new FrequencyNotFoundException("Invalid ID");
         }
         frequencyRepository.deleteById(id);
     }
