@@ -6,5 +6,6 @@ public record StatisticResponseDTO(Integer currentStreak,
                                    Integer maxStreak,
                                    Float percentageCompleted,
                                    Integer totalCompleted,
-                                   Date startTime) {
+                                   Date startTime,
+                                   Long habitId) {
 }

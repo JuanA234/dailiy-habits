@@ -6,7 +6,7 @@ import com.example.dailityhabits.dto.Statistic.StatisticResponseDTO;
 
 public interface StatisticService {
     StatisticResponseDTO getStatisticById(Long id);
-    StatisticResponseDTO createStatistic();
+    StatisticResponseDTO createStatistic(Long habitId);
     StatisticResponseDTO updateStatistic(Long id, StatisticRequestDTO statisticRequestDTO);
     void deleteStatistic(Long id);
     void calculateStreak(Long id);
