@@ -1,10 +1,11 @@
 package com.example.dailityhabits.controller;
 
-import com.example.dailityhabits.dto.Statistic.StatisticReportDTO;
-import com.example.dailityhabits.dto.Statistic.StatisticRequestDTO;
-import com.example.dailityhabits.dto.Statistic.StatisticResponseDTO;
+import com.example.dailityhabits.DTO.statistic.StatisticReportDTO;
+import com.example.dailityhabits.DTO.statistic.StatisticRequestDTO;
+import com.example.dailityhabits.DTO.statistic.StatisticResponseDTO;
 import com.example.dailityhabits.service.interfaces.StatisticService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,17 +21,17 @@ public class StatisticController {
         return ResponseEntity.ok(statisticService.getStatisticById(id));
     }
 
-    @PostMapping
-    public ResponseEntity<StatisticResponseDTO> createStatistic(){
-        return ResponseEntity.ok(statisticService.createStatistic());
+    @PostMapping("/habit/{habitId}")
+    public ResponseEntity<StatisticResponseDTO> createStatistic(@PathVariable Long habitId){
+        return ResponseEntity.status(HttpStatus.CREATED).body(statisticService.createStatistic(habitId));
     }
 
-    @PutMapping("{/id}")
+    @PutMapping("/{id}")
     public ResponseEntity<StatisticResponseDTO> updateStatistic(@PathVariable Long id, @RequestBody StatisticRequestDTO statisticRequestDTO){
         return ResponseEntity.ok(statisticService.updateStatistic(id, statisticRequestDTO));
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteStatistic(@PathVariable Long id){
         statisticService.deleteStatistic(id);
         return ResponseEntity.noContent().build();

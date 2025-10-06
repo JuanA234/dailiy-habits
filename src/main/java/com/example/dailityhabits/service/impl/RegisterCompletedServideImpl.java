@@ -11,6 +11,8 @@ import com.example.dailityhabits.service.interfaces.RegisterCompletedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class RegisterCompletedServideImpl implements RegisterCompletedService {
@@ -25,6 +27,19 @@ public class RegisterCompletedServideImpl implements RegisterCompletedService {
             throw new RegisterNotFoundException("Register not found");
         }
         registerCompletedRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ResponseRegisterCompletedDTO> listRegisterCompleted() {
+        return registerCompletedRepository.findAll().
+                stream().map(registerCompletedMapper::toDTO)
+                .toList();
+    }
+
+    @Override
+    public ResponseRegisterCompletedDTO findRegisterCompleted(Long id) {
+        return registerCompletedMapper.toDTO(registerCompletedRepository.findById(id)
+                .orElseThrow(() -> new RegisterNotFoundException("Register not found")));
     }
 
     @Override
