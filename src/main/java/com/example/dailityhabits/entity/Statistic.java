@@ -28,7 +28,7 @@ public class Statistic {
 
     private LocalDateTime startTime;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "habit_id", referencedColumnName = "id")
     private Habit habit;
 

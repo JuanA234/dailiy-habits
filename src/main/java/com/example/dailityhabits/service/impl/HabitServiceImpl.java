@@ -7,13 +7,16 @@ import com.example.dailityhabits.DTO.registerCompleted.ResponseRegisterCompleted
 import com.example.dailityhabits.entity.Frequency;
 import com.example.dailityhabits.entity.Habit;
 import com.example.dailityhabits.entity.Reminder;
+import com.example.dailityhabits.entity.Statistic;
 import com.example.dailityhabits.exception.notFound.FrecuencyNotFoundException;
 import com.example.dailityhabits.exception.notFound.HabitNotFoundException;
 import com.example.dailityhabits.exception.notFound.ReminderNotFoundException;
+import com.example.dailityhabits.exception.notFound.StatisticNotFoundException;
 import com.example.dailityhabits.mapper.HabitMapper;
 import com.example.dailityhabits.repository.FrequencyRepository;
 import com.example.dailityhabits.repository.HabitRepository;
 import com.example.dailityhabits.repository.ReminderRepository;
+import com.example.dailityhabits.repository.StatisticRepository;
 import com.example.dailityhabits.service.interfaces.HabitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,7 +33,7 @@ public class HabitServiceImpl implements HabitService {
     private final HabitRepository habitRepository;
     private final HabitMapper habitMapper;
     private final FrequencyRepository  frequencyRepository;
-    private final ReminderRepository reminderRepository;
+    private final StatisticRepository statisticRepository;
 
 
     @Override
@@ -51,8 +54,12 @@ public class HabitServiceImpl implements HabitService {
         Frequency frequency = frequencyRepository.findById(request.frecuencyId())
                 .orElseThrow(()->new FrecuencyNotFoundException("Frecuency not found"));
 
+        Statistic statistic = statisticRepository.findById(request.statisticId())
+                .orElseThrow(()->new StatisticNotFoundException("Statistic not found"));
+
         Habit habit = habitMapper.toEntity(request);
         habit.setFrequency(frequency);
+        habit.setStatistic(statistic);
 
         return habitMapper.toDTO(habitRepository.save(habit));
     }
