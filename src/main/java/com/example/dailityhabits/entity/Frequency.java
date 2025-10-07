@@ -2,6 +2,8 @@ package com.example.dailityhabits.entity;
 
 import com.example.dailityhabits.enumeration.FrequencyType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,9 +12,11 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
 @Entity
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "frequencies")
 public class Frequency {
     @Id
