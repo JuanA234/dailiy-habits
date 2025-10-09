@@ -13,8 +13,6 @@ public interface HabitMapper {
     ResponseHabitDTO toDTO(Habit habit);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(source = "frecuencyId", target = "frequency.id")
-    @Mapping(source = "statisticId", target = "statistic.id")
     Habit toEntity(CreateHabitDTO dto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
