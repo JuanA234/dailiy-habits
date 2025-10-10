@@ -10,7 +10,7 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface RegisterCompletedMapper {
 
-    @Mapping(source = "habit", target = "habit")
+    @Mapping(source = "habit.id", target = "habitId")
     ResponseRegisterCompletedDTO toDTO(RegisterCompleted registerCompleted);
 
     @Mapping(target = "id", ignore = true)

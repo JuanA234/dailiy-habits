@@ -11,7 +11,6 @@ public record ResponseRegisterCompletedDTO(
         LocalDate date,
         LocalTime time,
         String notas,
-        ResponseHabitDTO habit
-
+        Long habitId
         ) {
 }

@@ -3,6 +3,7 @@ package com.example.dailityhabits.service.interfaces;
 import com.example.dailityhabits.DTO.habit.CreateHabitDTO;
 import com.example.dailityhabits.DTO.habit.ResponseHabitDTO;
 import com.example.dailityhabits.DTO.habit.UpdateHabitDTO;
+import com.example.dailityhabits.DTO.registerCompleted.CreateRegisterCompletedDTO;
 import com.example.dailityhabits.DTO.registerCompleted.ResponseRegisterCompletedDTO;
 import com.example.dailityhabits.entity.Habit;
 import com.example.dailityhabits.entity.RegisterCompleted;
@@ -19,7 +20,7 @@ public interface HabitService{
 
     ResponseHabitDTO UpdateHabit(Long id, UpdateHabitDTO request);
 
-    ResponseRegisterCompletedDTO check(String notas);
+    ResponseRegisterCompletedDTO checkHabit(Long id, CreateRegisterCompletedDTO registerCompletedDTO);
 
     void calculateProgress();
 
