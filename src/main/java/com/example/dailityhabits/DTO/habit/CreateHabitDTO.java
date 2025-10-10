@@ -11,7 +11,7 @@ public record CreateHabitDTO(
         String name,
         String description,
         String category,
-        @NotNull(message = "El habito debe tener una frecuencia")
+        //@NotNull(message = "El habito debe tener una frecuencia")
         CreateFrequencyDTO frequency
         ) {
 }

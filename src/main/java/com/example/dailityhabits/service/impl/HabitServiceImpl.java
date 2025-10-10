@@ -32,11 +32,6 @@ public class HabitServiceImpl implements HabitService {
 
 
     @Override
-    public void calculateProgress() {
-
-    }
-
-    @Override
     public void deleteHabit(Long id) {
         Statistic statistic = statisticRepository.findByHabit_Id(id);
         List<RegisterCompleted> registerCompleted = registerCompletedRepository.findByHabit_Id(id);

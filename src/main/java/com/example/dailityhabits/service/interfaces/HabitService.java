@@ -20,8 +20,6 @@ public interface HabitService{
 
     ResponseRegisterCompletedDTO checkHabit(Long id, CreateRegisterCompletedDTO registerCompletedDTO);
 
-    void calculateProgress();
-
     void deleteHabit(Long id);
 
 }

@@ -46,7 +46,6 @@ public class SecurityConfig {
                         .requestMatchers("/api/users/**").permitAll()
                         .requestMatchers("/api/registerCompleted/**").permitAll()
                         .requestMatchers("/api/frequencies/**").permitAll()
-                        .requestMatchers("/api/reminders/**").permitAll()
                         .anyRequest().authenticated())
                 .authenticationProvider(authenticationProvider(jpaUserDetailsService))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
