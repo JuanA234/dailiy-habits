@@ -17,12 +17,10 @@ public interface HabitMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "registerCompleted", ignore = true)
-    @Mapping(target = "reminders", ignore = true)
     Habit toEntity(CreateHabitDTO dto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "registerCompleted", ignore = true)
-    @Mapping(target = "reminders", ignore = true)
     Habit UpdateHabitFromDTO(UpdateHabitDTO dto, @MappingTarget Habit entity);
 }

@@ -33,7 +33,4 @@ public class Habit {
 
     @OneToMany(mappedBy = "habit", cascade = CascadeType.ALL,  orphanRemoval = true)
     private Set<RegisterCompleted> registerCompleted = new HashSet<>();
-
-    @OneToMany(mappedBy = "habit", cascade = CascadeType.ALL,  orphanRemoval = true)
-    private Set<Reminder> reminders;
 }
