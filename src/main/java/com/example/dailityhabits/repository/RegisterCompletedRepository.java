@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface RegisterCompletedRepository extends JpaRepository<RegisterCompleted, Long> {
     Optional<RegisterCompleted> findTopByHabitIdOrderByDateDesc(Long id);
     List<RegisterCompleted> findTop7ByHabitIdOrderByDateDesc(Long id);
+
+    List<RegisterCompleted> findByHabit_Id(Long habitId);
 }
