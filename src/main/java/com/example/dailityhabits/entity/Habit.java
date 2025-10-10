@@ -28,14 +28,12 @@ public class Habit {
     private String category;
 
     private LocalDateTime startDate;
-    @OneToOne(mappedBy = "habit")
+    @OneToOne(mappedBy = "habit", cascade = CascadeType.ALL,  orphanRemoval = true)
     private Frequency frequency;
 
-    @OneToMany(mappedBy = "habit")
+    @OneToMany(mappedBy = "habit", cascade = CascadeType.ALL,  orphanRemoval = true)
     private Set<RegisterCompleted> registerCompleted = new HashSet<>();
 
-    @OneToMany(mappedBy = "habit")
+    @OneToMany(mappedBy = "habit", cascade = CascadeType.ALL,  orphanRemoval = true)
     private Set<Reminder> reminders;
-
-
 }

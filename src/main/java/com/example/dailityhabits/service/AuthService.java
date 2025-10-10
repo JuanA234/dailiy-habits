@@ -6,6 +6,7 @@ import com.example.dailityhabits.DTO.UserAuth.UserLogInDTOResponse;
 import com.example.dailityhabits.DTO.UserAuth.UserRegisterDTORequest;
 import com.example.dailityhabits.entity.Role;
 import com.example.dailityhabits.entity.User;
+import com.example.dailityhabits.enumeration.RolesEnum;
 import com.example.dailityhabits.repository.RoleRepository;
 import com.example.dailityhabits.repository.UserRepository;
 import com.example.dailityhabits.security.jwt.JwtUtil;
@@ -34,7 +35,7 @@ public class AuthService {
         }
 
         Role role = roleRepository.findByRole(request.role())
-                .orElseThrow(() -> new RuntimeException("Role no encontrado"));
+                .orElse(roleRepository.findByRole(RolesEnum.USER).get());
 
         User newUser = User.builder()
                 .username(request.user())

@@ -62,6 +62,9 @@ public class HabitServiceImpl implements HabitService {
     public ResponseHabitDTO createHabit(CreateHabitDTO request) {
         Habit habit = habitMapper.toEntity(request);
         habit.setStartDate(LocalDateTime.now());
+        if (habit.getFrequency() != null) {
+            habit.getFrequency().setHabit(habit);
+        }
         return habitMapper.toDTO(habitRepository.save(habit));
     }
 
@@ -83,12 +86,15 @@ public class HabitServiceImpl implements HabitService {
     }
 
     @Override
-    public ResponseHabitDTO UpdateHabit(Long id, UpdateHabitDTO request) {
+    public ResponseHabitDTO updateHabit(Long id, UpdateHabitDTO request) {
 
         Habit foundHabit = habitRepository.findById(id)
                 .orElseThrow(() -> new HabitNotFoundException("Habit not found"));
 
         habitMapper.UpdateHabitFromDTO(request, foundHabit);
+        if (foundHabit.getFrequency() != null) {
+            foundHabit.getFrequency().setHabit(foundHabit);
+        }
 
         return habitMapper.toDTO(habitRepository.save(foundHabit));
     }
