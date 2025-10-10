@@ -10,13 +10,13 @@ import java.util.List;
 
 public interface HabitService{
 
-    ResponseHabitDTO createHabit(CreateHabitDTO request);
+    ResponseHabitDTO createHabit(CreateHabitDTO request, Long userId);
 
     List<ResponseHabitDTO> listHabits();
 
     ResponseHabitDTO findHabitById(Long id);
 
-    ResponseHabitDTO updateHabit(Long id, UpdateHabitDTO request);
+    ResponseHabitDTO updateHabit(Long id, UpdateHabitDTO request, Long userId);
 
     ResponseRegisterCompletedDTO checkHabit(Long id, CreateRegisterCompletedDTO registerCompletedDTO);
 

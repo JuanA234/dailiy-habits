@@ -33,4 +33,8 @@ public class Habit {
 
     @OneToMany(mappedBy = "habit", cascade = CascadeType.ALL,  orphanRemoval = true)
     private Set<RegisterCompleted> registerCompleted = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 }

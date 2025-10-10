@@ -3,6 +3,7 @@ package com.example.dailityhabits.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -26,4 +27,7 @@ public class User {
             inverseJoinColumns =  @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,  orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<Habit> habits = new HashSet<>();
 }
