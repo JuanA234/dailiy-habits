@@ -22,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,8 +33,6 @@ public class HabitServiceImpl implements HabitService {
 
     private final HabitRepository habitRepository;
     private final HabitMapper habitMapper;
-    private final FrequencyRepository  frequencyRepository;
-    private final StatisticRepository statisticRepository;
 
 
     @Override
@@ -50,17 +49,8 @@ public class HabitServiceImpl implements HabitService {
 
     @Override
     public ResponseHabitDTO createHabit(CreateHabitDTO request) {
-
-        Frequency frequency = frequencyRepository.findById(request.frecuencyId())
-                .orElseThrow(()->new FrecuencyNotFoundException("Frecuency not found"));
-
-        Statistic statistic = statisticRepository.findById(request.statisticId())
-                .orElseThrow(()->new StatisticNotFoundException("Statistic not found"));
-
         Habit habit = habitMapper.toEntity(request);
-        habit.setFrequency(frequency);
-        habit.setStatistic(statistic);
-
+        habit.setStartDate(LocalDateTime.now());
         return habitMapper.toDTO(habitRepository.save(habit));
     }
 

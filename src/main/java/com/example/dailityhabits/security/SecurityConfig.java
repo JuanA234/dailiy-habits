@@ -1,6 +1,7 @@
 package com.example.dailityhabits.security;
 
 import com.example.dailityhabits.security.jwt.JwtFilter;
+import com.example.dailityhabits.security.services.JpaUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,18 +30,19 @@ public class SecurityConfig {
     }
 
     @Bean
-
-
-
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtFilter jwtFilter, AuthenticationProvider authenticationProvider    ) throws Exception {
-        return http.csrf(//csrf->csrf.disable()
-                        AbstractHttpConfigurer::disable)
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtFilter jwtFilter, JpaUserDetailsService jpaUserDetailsService) throws Exception {
+        return http.csrf(csrf->csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth->auth
                         .requestMatchers("/api/auth/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .authenticationProvider(authenticationProvider)
+                        .requestMatchers("/api/habits/**").permitAll()
+                        .requestMatchers("/api/statistics/**").permitAll()
+                        .requestMatchers("/api/users/**").permitAll()
+                        .requestMatchers("/api/registerCompleted/**").permitAll()
+                        .requestMatchers("/api/frequencies/**").permitAll()
+                        .requestMatchers("/api/reminders/**").permitAll()
+                        .anyRequest().authenticated())
+                .authenticationProvider(authenticationProvider(jpaUserDetailsService))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
@@ -51,10 +53,10 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
+    public AuthenticationProvider authenticationProvider(JpaUserDetailsService jpaUserDetailsService) {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder);
+        authenticationProvider.setUserDetailsService(jpaUserDetailsService);
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
 }

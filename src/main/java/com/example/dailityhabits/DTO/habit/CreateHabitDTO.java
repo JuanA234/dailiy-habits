@@ -8,10 +8,6 @@ import java.time.LocalDateTime;
 public record CreateHabitDTO(
         @NotBlank String name,
         String description,
-        String category,
-        @NotNull LocalDateTime startDate,
-        @NotNull Long frecuencyId,
-        @NotNull Long statisticId
-
+        String category
         ) {
 }
