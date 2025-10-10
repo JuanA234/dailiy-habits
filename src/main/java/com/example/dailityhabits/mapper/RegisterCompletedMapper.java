@@ -13,10 +13,6 @@ public interface RegisterCompletedMapper {
     @Mapping(source = "habit.id", target = "habitId")
     ResponseRegisterCompletedDTO toDTO(RegisterCompleted registerCompleted);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(source = "habitId", target = "habit.id")
-    RegisterCompleted toEntity(CreateRegisterCompletedDTO dto);
-
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     RegisterCompleted updateEntity(UpdateRegisterCompletedDTO dto, @MappingTarget RegisterCompleted entity);
 
