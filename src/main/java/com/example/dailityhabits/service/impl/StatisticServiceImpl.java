@@ -172,7 +172,7 @@ public class StatisticServiceImpl implements StatisticService {
     }
 
     private int calculateExpectedDays(Frequency frequency, LocalDate startDate, LocalDate endDate) {
-        if (!frequency.checkFrequency()) {
+        if (frequency == null || frequency.getType() == null) {
             return 0;
         }
 
