@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
         ApiError apiError = ApiError.builder()
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                .message("An unexpected error occurred")
+                .message(ex.getMessage())
                 .errors(null)
                 .build();
 

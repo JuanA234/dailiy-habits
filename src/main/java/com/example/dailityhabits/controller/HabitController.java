@@ -6,11 +6,13 @@ import com.example.dailityhabits.DTO.habit.ResponseHabitDTO;
 import com.example.dailityhabits.DTO.habit.UpdateHabitDTO;
 import com.example.dailityhabits.DTO.registerCompleted.CreateRegisterCompletedDTO;
 import com.example.dailityhabits.DTO.registerCompleted.ResponseRegisterCompletedDTO;
+import com.example.dailityhabits.security.services.UserInfoDetail;
 import com.example.dailityhabits.service.interfaces.HabitService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,13 +35,13 @@ public class HabitController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseHabitDTO> createHabit(@RequestBody @Valid CreateHabitDTO habit){
-        return ResponseEntity.status(HttpStatus.CREATED).body(habitService.createHabit(habit));
+    public ResponseEntity<ResponseHabitDTO> createHabit(@RequestBody @Valid CreateHabitDTO habit, @AuthenticationPrincipal UserInfoDetail user){
+        return ResponseEntity.status(HttpStatus.CREATED).body(habitService.createHabit(habit, user.getId()));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseHabitDTO> updateHabit(@PathVariable Long id, @RequestBody @Valid UpdateHabitDTO habit){
-        return ResponseEntity.ok(habitService.updateHabit(id, habit));
+    public ResponseEntity<ResponseHabitDTO> updateHabit(@PathVariable Long id, @RequestBody @Valid UpdateHabitDTO habit, @AuthenticationPrincipal UserInfoDetail user){
+        return ResponseEntity.ok(habitService.updateHabit(id, habit,user.getId()));
 
     }
 
