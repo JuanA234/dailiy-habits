@@ -6,7 +6,6 @@ import com.example.dailityhabits.DTO.habit.ResponseHabitDTO;
 import com.example.dailityhabits.DTO.habit.UpdateHabitDTO;
 import com.example.dailityhabits.DTO.registerCompleted.CreateRegisterCompletedDTO;
 import com.example.dailityhabits.DTO.registerCompleted.ResponseRegisterCompletedDTO;
-import com.example.dailityhabits.entity.Habit;
 import com.example.dailityhabits.service.interfaces.HabitService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +39,7 @@ public class HabitController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ResponseHabitDTO> updateHabit(@PathVariable Long id, @RequestBody @Valid UpdateHabitDTO habit){
-        return ResponseEntity.ok(habitService.UpdateHabit(id, habit));
+        return ResponseEntity.ok(habitService.updateHabit(id, habit));
 
     }
 
@@ -54,7 +53,4 @@ public class HabitController {
     public ResponseEntity<ResponseRegisterCompletedDTO> checkHabit(@PathVariable Long id, @RequestBody CreateRegisterCompletedDTO registerCompletedDTO){
         return ResponseEntity.ok(habitService.checkHabit(id, registerCompletedDTO));
     }
-
-
-
 }
