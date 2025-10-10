@@ -1,10 +1,11 @@
 package com.example.dailityhabits.service.interfaces;
 
-import com.example.dailityhabits.DTO.frequency.FrequencyDTO;
+import com.example.dailityhabits.DTO.frequency.CreateFrequencyDTO;
+import com.example.dailityhabits.DTO.frequency.ResponseFrequencyDTO;
 
 public interface FrequencyService {
-    FrequencyDTO getFrequencybyId(Long id);
-    FrequencyDTO createFrequency(FrequencyDTO frequencyDTO);
-    FrequencyDTO updateFrequency(FrequencyDTO frequencyDTO);
+    ResponseFrequencyDTO getFrequencybyId(Long id);
+    ResponseFrequencyDTO createFrequency(CreateFrequencyDTO createFrequencyDTO);
+    ResponseFrequencyDTO updateFrequency(ResponseFrequencyDTO responseFrequencyDTO);
     void  deleteFrequencyById(Long id);
 }
