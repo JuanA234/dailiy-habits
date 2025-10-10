@@ -9,12 +9,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/statistics")
 @RequiredArgsConstructor
 public class StatisticController {
 
     private final StatisticService statisticService;
+
+    @GetMapping
+    public ResponseEntity<List<StatisticResponseDTO>> getAllStatistics() {
+        return ResponseEntity.ok(statisticService.getAllStatistics());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<StatisticResponseDTO> getStatisticById(@PathVariable Long id){

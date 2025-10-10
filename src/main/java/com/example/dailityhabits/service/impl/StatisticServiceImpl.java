@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +34,11 @@ public class StatisticServiceImpl implements StatisticService {
     private final RegisterCompletedRepository registerCompletedRepository;
     private final HabitRepository habitRepository;
 
+
+    @Override
+    public List<StatisticResponseDTO> getAllStatistics() {
+        return statisticRepository.findAll().stream().map(statisticMapper::toDTO).toList();
+    }
 
     @Override
     public StatisticResponseDTO getStatisticById(Long id) {
