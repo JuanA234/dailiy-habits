@@ -32,6 +32,7 @@ public class HabitServiceImpl implements HabitService {
     private final HabitMapper habitMapper;
     private final RegisterCompletedRepository registerCompletedRepository;
     private final RegisterCompletedMapper registerCompletedMapper;
+    private final StatisticRepository statisticRepository;
 
 
     @Override
@@ -41,6 +42,17 @@ public class HabitServiceImpl implements HabitService {
 
     @Override
     public void deleteHabit(Long id) {
+        Statistic statistic = statisticRepository.findByHabit_Id(id);
+        List<RegisterCompleted> registerCompleted = registerCompletedRepository.findByHabit_Id(id);
+
+        if(statistic != null) {
+            statisticRepository.delete(statistic);
+        }
+
+        if(!registerCompleted.isEmpty()) {
+            registerCompletedRepository.deleteAll(registerCompleted);
+        }
+
         Habit habit = habitRepository.findById(id)
                 .orElseThrow(() -> new HabitNotFoundException("Habit not found"));
         habitRepository.delete(habit);
