@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/registerCompleted")
+@RequestMapping("/api/registerCompleted")
 @RequiredArgsConstructor
 public class RegisterCompletedController {
     private final RegisterCompletedService registerCompletedService;
@@ -31,7 +31,7 @@ public class RegisterCompletedController {
         return ResponseEntity.ok(registerCompletedService.UpdateRegister(id, request));
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/{id}")
     public ResponseEntity<ResponseRegisterCompletedDTO> deleteRegister(@PathVariable Long id){
         registerCompletedService.deleteRegister(id);
         return ResponseEntity.noContent().build();

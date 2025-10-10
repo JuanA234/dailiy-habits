@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -31,7 +32,7 @@ public class Habit {
     private Frequency frequency;
 
     @OneToMany(mappedBy = "habit")
-    private Set<RegisterCompleted> registerCompleted;
+    private Set<RegisterCompleted> registerCompleted = new HashSet<>();
 
     @OneToMany(mappedBy = "habit")
     private Set<Reminder> reminders;

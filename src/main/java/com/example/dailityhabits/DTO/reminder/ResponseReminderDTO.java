@@ -8,7 +8,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
 
-public record ReminderDTO(
+public record ResponseReminderDTO(
         @Positive(message = "El ID debe ser un número positivo")
         Long id,
 

@@ -6,8 +6,9 @@ import jakarta.validation.constraints.*;
 import java.time.DayOfWeek;
 import java.util.List;
 
-public record FrequencyDTO(
+public record ResponseFrequencyDTO(
         @Positive(message = "El ID debe ser un número positivo")
+        @NotNull(message = "El ID no puede ser null")
         Long id,
 
         @NotNull(message = "Los días de la semana no pueden ser nulos")
